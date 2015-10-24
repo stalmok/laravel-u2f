@@ -55,7 +55,7 @@ class U2fServiceProvider extends ServiceProvider
         $this->publishes([ (__DIR__ . '/../config/u2f.php') => config_path('u2f.php') ], 'config');
 
         $this->publishes([
-            __DIR__. '/../resources/js' => public_path('vendor/u2f'),
+            __DIR__. '/../resources/js' => base_path('/resources/js/u2f'),
         ], 'public');
 
         $this->publishes([
