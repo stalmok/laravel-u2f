@@ -1,12 +1,12 @@
 {
-    "name": "lahaxearnaud/laravel-u2f",
-    "description": "U2F support for laravel 5",
+    "name": "certly/laravel-u2f",
+    "description": "U2F support for laravel 5 (forked from lahaxearnaud/laravel-u2f)",
     "keywords": [
         "u2f",
         "security",
         "otp"
     ],
-    "homepage": "https://github.com/lahaxearnaud/laravel-u2f",
+    "homepage": "https://github.com/certly/laravel-u2f",
     "license": "MIT",
     "authors": [
         {
