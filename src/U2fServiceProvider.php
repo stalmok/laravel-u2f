@@ -58,7 +58,9 @@ class U2fServiceProvider extends ServiceProvider
             __DIR__. '/../resources/js' => public_path('vendor/u2f'),
         ], 'public');
 
-        $this->loadViewsFrom(__DIR__ . '/../views/', 'u2f');
+        $this->publishes([
+            __DIR__ . '/../views' => base_path('/resources/views')
+        ], 'views');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'u2f');
 
     }
