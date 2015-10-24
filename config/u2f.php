@@ -30,7 +30,7 @@ return [
         /*
          * the template to load for the registration page
          */
-        'view' => 'u2f::register',
+        'view' => 'u2f.register',
 
         /*
          * the route to redirect after a successful key registration (default /)
@@ -43,7 +43,7 @@ return [
         /*
          * the template to load for the authentication page
          */
-        'view' => 'u2f::authentication',
+        'view' => 'u2f.authentication',
 
         /*
          * the route to redirect after a successful key authentication (default /)
