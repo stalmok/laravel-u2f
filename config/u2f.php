@@ -14,12 +14,12 @@ return [
     'enable' => true,
 
     /*
-     * Do not redirect user without u2f key to the u2f authentication page after login
+     * Do not redirect user without u2f key to the authentication page after login
      */
     'byPassUserWithoutKey' => true,
 
     /*
-     * The sessionU2fName attribut will be set to true when the user validate an u2f
+     * The sessionU2fName attribute will be set to true when the user validates a u2f
      */
     'sessionU2fName' => 'otp',
 
@@ -41,7 +41,7 @@ return [
 
     'authenticate' => [
         /*
-         * the template to load for the authentication page
+         * the authentication page template
          */
         'view' => 'u2f.authentication',
 
@@ -53,7 +53,7 @@ return [
 
     /*
      * The authenticate middleware. If the request is valid for this middleware we
-     * can get the current uer by Auth::user()
+     * can get the current user by Auth::user()
      */
     'authMiddlewareName' => 'auth'
 ];
