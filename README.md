@@ -13,8 +13,8 @@ In `config/app.php`, add the provider `Certly\U2f\LaravelU2fServiceProvider::cla
 This will copy the needed resources (views, CSS, and JavaScript) to your project so you can modify them.
 
 ``` bash
-$ php artisan vendor:publish --provider="Certly\U2f\U2fServiceProvider"
-$ php artisan migrate
+php artisan vendor:publish --provider="Certly\U2f\U2fServiceProvider"
+php artisan migrate
 ```
 
 You can add the following to your `mix.scripts` call if you're using Elixir to automatically include the needed JavaScript in your central JavaScript file.
