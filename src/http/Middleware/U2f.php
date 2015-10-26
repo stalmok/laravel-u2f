@@ -26,7 +26,7 @@ class U2f
     /**
      * @var Config
      */
-    protected  $config;
+    protected $config;
 
     public function __construct(LaravelU2f $u2f, Config $config)
     {
@@ -44,7 +44,7 @@ class U2f
      */
     public function handle($request, Closure $next)
     {
-        if(! $this->config->get('u2f.enable')) {
+        if (! $this->config->get('u2f.enable')) {
             return $next($request);
         }
 
