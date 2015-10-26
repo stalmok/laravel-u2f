@@ -27,7 +27,7 @@ class U2f
      */
     protected  $config;
 
-    public function __construct(\Lahaxearnaud\U2f\U2f $u2f, Config $config)
+    public function __construct(LaravelU2f $u2f, Config $config)
     {
         $this->u2f = $u2f;
         $this->config = $config;
