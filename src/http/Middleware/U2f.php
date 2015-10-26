@@ -1,8 +1,8 @@
-<?php namespace Lahaxearnaud\U2f\Http\Middleware;
+<?php namespace Certly\U2f\Http\Middleware;
 
 use Closure;
-use Lahaxearnaud\U2f\U2f as LaravelU2f;
-use Lahaxearnaud\U2f\Models\U2fKey;
+use Certly\U2f\U2f as LaravelU2f;
+use Certly\U2f\Models\U2fKey;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Config\Repository as Config;
 
@@ -11,7 +11,7 @@ use Illuminate\Config\Repository as Config;
  *
  *
  *
- * @package Lahaxearnaud\U2f\Http\Middleware
+ * @package Certly\U2f\Http\Middleware
  * @author  LAHAXE Arnaud
  */
 class U2f
