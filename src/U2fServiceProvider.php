@@ -1,4 +1,4 @@
-<?php namespace Lahaxearnaud\U2f;
+<?php namespace Certly\U2f;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
@@ -22,7 +22,7 @@ class U2fServiceProvider extends ServiceProvider
     {
 
         $routeConfig = [
-            'namespace' => '\Lahaxearnaud\U2f\Http\Controllers',
+            'namespace' => '\Certly\U2f\Http\Controllers',
             'prefix' => '/u2f/',
             'middleware' => $this->app[ 'config' ]->get('u2f.authMiddlewareName', 'auth')
         ];
