@@ -52,10 +52,7 @@ class U2f
             if (Auth::guest()) {
                 throw new HttpException(401, 'You need to log in before an u2f authentication');
             }
-            if(
-                U2fKey::where('user_id', '=', \Auth::user()->id)->count()  === 0
-                && $this->config->get('u2f.byPassUserWithoutKey')
-            ) {
+            if (U2fKey::where('user_id', '=', Auth::user()->id)->count() === 0 && $this->config->get('u2f.byPassUserWithoutKey')) {
                 return $next($request);
             }
             return redirect()->guest('u2f/auth');
