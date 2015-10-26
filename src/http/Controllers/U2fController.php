@@ -5,7 +5,6 @@ use Input;
 use Event;
 use Session;
 use Redirect;
-use App\Event;
 use Exception;
 use Certly\U2f\U2f as LaravelU2f;
 use App\Http\Controllers\Controller;
