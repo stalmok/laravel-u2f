@@ -11,7 +11,6 @@ use Certly\U2f\U2f as LaravelU2f;
 use App\Http\Controllers\Controller;
 use Illuminate\Config\Repository as Config;
 
-
 class U2fController extends Controller
 {
 
