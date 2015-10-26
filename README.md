@@ -33,7 +33,7 @@ The included views assume there is an `app` view. If this isn't the case, you'll
 
 ### Middleware
 
-In the app/Http/Kernel.php file
+In the `app/Http/Kernel.php` file, add the following to `$routeMiddleware`. This middleware is called internally by the package, so it is important that it is present.
 
 ``` php
 protected $routeMiddleware = [
