@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Lahaxearnaud\\U2f\\": "src"
+            "Certly\\U2f\\": "src"
         }
     }
 }
