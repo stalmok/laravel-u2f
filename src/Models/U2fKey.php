@@ -1,4 +1,4 @@
-<?php namespace Lahaxearnaud\U2f\Models;
+<?php namespace Certly\U2f\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class OtpKey
  *
  * @author  LAHAXE Arnaud
- * @package Lahaxearnaud\U2f\Models
+ * @package Certly\U2f\Models
  */
 class U2fKey extends Model
 {
