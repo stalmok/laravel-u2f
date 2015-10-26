@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-Copyright (c) 2015 LAHAXE Arnaud <lahaxe.arnaud@gmail.com>
+Copyright (c) 2015 LAHAXE Arnaud <lahaxe.arnaud@gmail.com>   
 Modifications by Ian Carroll (c) 2015 Ian Carroll <ian@certly.io>
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
