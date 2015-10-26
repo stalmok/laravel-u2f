@@ -1,8 +1,8 @@
-<?php namespace Lahaxearnaud\U2f\Http\Controllers;
+<?php namespace Certly\U2f\Http\Controllers;
 
 use App\Event;
 use App\Http\Controllers\Controller;
-use Lahaxearnaud\U2f\U2f as LaravelU2f;
+use Certly\U2f\U2f as LaravelU2f;
 use Illuminate\Config\Repository as Config;
 
 
