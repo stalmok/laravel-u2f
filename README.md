@@ -2,42 +2,32 @@
 Integrate FIDO U2F into Laravel 5.x applications. You'll need to be accessing your application from an [App ID compliant](https://developers.yubico.com/U2F/App_ID.html) domain; `localhost` support is finicky.
 
 ## Install
-
-Via Composer
-
 ``` bash
 composer require certly/laravel-u2f
 ```
 
-### Provider
+In `config/app.php`, add the provider `Certly\U2f\LaravelU2fServiceProvider::class` to the providers array and `'U2f' => Certly\U2f\U2fServiceFacade::class` to the aliases array.
 
-In the config/app.php file:
-``` php
-[
-    // ...
-    Certly\U2f\LaravelU2fServiceProvider::class,
-    // ...
-]
-```
 
-### Alias
-
-In the config/app.php file:
-``` php
-[
-    // ...
-    'U2f' => Certly\U2f\U2fServiceFacade::class,
-    // ...
-]
-```
-
-### Publishing resources
-This will copy the needed resources to your project so you can modify them.
+### Publishing
+This will copy the needed resources (views, CSS, and JavaScript) to your project so you can modify them.
 
 ``` bash
 $ php artisan vendor:publish --provider="Certly\U2f\U2fServiceProvider"
 $ php artisan migrate
 ```
+
+You can add the following to your `mix.scripts` call if you're using Elixir to automatically include the needed JavaScript in your central JavaScript file.
+
+``` javascript
+elixir(function(mix) {
+    mix.scripts([
+        // ...
+        'u2f/app.js',
+        'u2f/u2f.js',
+```
+
+The included views assume there is an `app` view. If this isn't the case, you'll need to manually modify the views in the `u2f` folder (under `resources/views`).
 
 ### Middleware
 
