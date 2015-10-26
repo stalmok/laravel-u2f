@@ -70,9 +70,8 @@ class U2fController extends Controller
             if ($this->config->get('u2f.register.postSuccessRedirectRoute')) {
 
                 return Redirect::route($this->config->get('u2f.register.postSuccessRedirectRoute'));
-            } else {
-                return redirect('/');
             }
+            return redirect('/');
         } catch (Exception $e) {
             return Redirect::route('u2f.register.data');
         }
