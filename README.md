@@ -1,5 +1,5 @@
 # laravel-u2f
-[![Code Climate](https://codeclimate.com/github/certly/laravel-u2f/badges/gpa.svg)](https://codeclimate.com/github/certly/laravel-u2f)
+[![Code Climate](https://codeclimate.com/github/certly/laravel-u2f/badges/gpa.svg)](https://codeclimate.com/github/certly/laravel-u2f) [![Build Status](https://travis-ci.org/certly/laravel-u2f.svg?branch=master)](https://travis-ci.org/certly/laravel-u2f)
 
 Integrate FIDO U2F into Laravel 5.x applications. You'll need to be accessing your application from an [App ID compliant](https://developers.yubico.com/U2F/App_ID.html) domain; `localhost` support is finicky.
 
