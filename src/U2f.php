@@ -1,7 +1,7 @@
-<?php namespace Lahaxearnaud\U2f;
+<?php namespace Certly\U2f;
 
 use App\User;
-use Lahaxearnaud\U2f\Models\U2fKey;
+use Certly\U2f\Models\U2fKey;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Session\SessionManager as Session;
 
@@ -11,7 +11,7 @@ use Illuminate\Session\SessionManager as Session;
  *
  *
  *
- * @package Lahaxearnaud\U2f
+ * @package Certly\U2f
  * @author  LAHAXE Arnaud
  */
 class U2f {
