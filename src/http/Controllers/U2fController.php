@@ -22,7 +22,7 @@ class U2fController extends Controller
     /**
      * @var Config
      */
-    protected  $config;
+    protected $config;
 
     /**
      * @param LaravelU2f $u2f
@@ -67,7 +67,6 @@ class U2fController extends Controller
             Session::forget('u2f.registerData');
 
             if ($this->config->get('u2f.register.postSuccessRedirectRoute')) {
-
                 return Redirect::route($this->config->get('u2f.register.postSuccessRedirectRoute'));
             }
             return redirect('/');
@@ -84,7 +83,7 @@ class U2fController extends Controller
      */
     public function authData()
     {
-        if($this->u2f->check()) {
+        if ($this->u2f->check()) {
             return $this->redirectAfterSuccessAuth();
         }
 
@@ -122,7 +121,6 @@ class U2fController extends Controller
     protected function redirectAfterSuccessAuth()
     {
         if (strlen($this->config->get('u2f.authenticate.postSuccessRedirectRoute'))) {
-
             return \Redirect::intended($this->config->get('u2f.authenticate.postSuccessRedirectRoute'));
         } else {
             return \Redirect::intended('/');
