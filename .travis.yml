@@ -9,3 +9,6 @@ php:
 before_script:
   - travis_retry composer self-update
   - travis_retry composer install --prefer-source --no-interaction --dev
+addons:
+    code_climate:
+        repo_token: 52610dcc079a3308e6f6e25b1c9b8921af74071f10bffbd1e72a0b8d386570b6
