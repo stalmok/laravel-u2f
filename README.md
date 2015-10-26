@@ -1,19 +1,12 @@
 # laravel-u2f
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lahaxearnaud/laravel-u2f/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lahaxearnaud/laravel-u2f/?branch=master)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/c85fa3f1-7854-4eec-932d-8ac625c1318c/mini.png)](https://insight.sensiolabs.com/projects/c85fa3f1-7854-4eec-932d-8ac625c1318c)
-
-This PSR4 package provide u2f protocol integration in laravel 5 framework.
-
-## Requirements
-- A top level domain
-- HTTPS
+Integrate FIDO U2F into Laravel 5.x applications. You'll need to be accessing your application from an [App ID compliant](https://developers.yubico.com/U2F/App_ID.html) domain; `localhost` support is finicky.
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require lahaxearnaud/laravel-u2f
+composer require certly/laravel-u2f
 ```
 
 ### Provider
@@ -21,8 +14,9 @@ $ composer require lahaxearnaud/laravel-u2f
 In the config/app.php file:
 ``` php
 [
-    //...
-    "Lahaxeanaud\U2f\LaravelU2fServiceProvider"
+    // ...
+    Certly\U2f\LaravelU2fServiceProvider::class,
+    // ...
 ]
 ```
 
@@ -31,22 +25,17 @@ In the config/app.php file:
 In the config/app.php file:
 ``` php
 [
-    //...
-    'U2f' => 'Lahaxeanaud\U2f\U2fServiceFacade'
+    // ...
+    'U2f' => Certly\U2f\U2fServiceFacade::class,
+    // ...
 ]
 ```
 
-### Configs
+### Publishing resources
+This will copy the needed resources to your project so you can modify them.
 
 ``` bash
-$ php artisan vendor:publish --provider="Lahaxeanaud\U2f\U2fServiceProvider" --tag=config
-$ php artisan migrate
-```
-
-### Migrations
-
-``` bash
-$ php artisan vendor:publish --provider="Lahaxeanaud\U2f\U2fServiceProvider" --tag=migrations
+$ php artisan vendor:publish --provider="Certly\U2f\U2fServiceProvider"
 $ php artisan migrate
 ```
 
@@ -57,38 +46,27 @@ In the app/Http/Kernel.php file
 ``` php
 protected $routeMiddleware = [
     // ...
-    'u2f' => 'Lahaxeanaud\U2f\Http\Middleware\U2f',
+    'u2f' => Certly\U2f\Http\Middleware\U2f::class,
 ];
 ```
 
 ## Usage
 
 ### Middleware
-
-In the route.php file add the u2f middleware on your routes or groups:
 ``` php
     Route::get('admin/profile', ['middleware' => ['auth', 'u2f'], function () {
         //
     }]);
 ```
 ### Configuration
-
-### Events
-
-// to do
-
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+`config/u2f.php` is commented and will be created when you publish the provider via the above command.
 
 ## Security
-
-If you discover any security related issues, please email lahaxe[dot]arnaud[at]gmail[dot]com instead of using the issue tracker.
+Security issues can be reported via [HackerOne](https://hackerone.com/certly) or via email at [ian@certly.io](mailto:ian@certly.io).
 
 ## Credits
-
 - [Arnaud LAHAXE](https://github.com/lahaxearnaud)
+- [Ian Carroll](https://github.com/iangcarroll)
 
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+## License  
+[MIT](LICENSE.md)
