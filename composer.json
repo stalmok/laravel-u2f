@@ -21,6 +21,9 @@
         "yubico/u2flib-server": "0.1.0",
         "codeclimate/php-test-reporter": "v0.1.2"
     },
+    "conflict": {
+        "lahaxearnaud/laravel-u2f": "*"  
+    },
     "autoload": {
         "psr-4": {
             "Certly\\U2f\\": "src"
