@@ -1,21 +1,21 @@
-<?php namespace Certly\U2f;
+<?php
+
+namespace Certly\U2f;
 
 use App\User;
 use Certly\U2f\Models\U2fKey;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Session\SessionManager as Session;
 
-
 /**
- * Class LaravelU2f
+ * Class LaravelU2f.
  *
  *
  *
- * @package Certly\U2f
  * @author  LAHAXE Arnaud
  */
-class U2f {
-
+class U2f
+{
     /**
      * @var \u2flib_server\U2F
      */
@@ -24,20 +24,20 @@ class U2f {
     /**
      * @var Config
      */
-    protected  $config;
+    protected $config;
 
     /**
      * @var Session
      */
-    protected  $session;
+    protected $session;
 
     /**
      * @param \Illuminate\Config\Repository $config
      */
     public function __construct(Config $config, Session $session)
     {
-        $scheme = \Request::isSecure() ? "https://" : "http://";
-        $this->u2f = new \u2flib_server\U2F($scheme . \Request::getHttpHost());
+        $scheme = \Request::isSecure() ? 'https://' : 'http://';
+        $this->u2f = new \u2flib_server\U2F($scheme.\Request::getHttpHost());
         $this->config = $config;
         $this->session = $session;
     }
@@ -51,7 +51,6 @@ class U2f {
      */
     public function getRegisterData(User $user)
     {
-
         return $this->u2f->getRegisterData(U2fKey::where('user_id', $user->id)->get()->all());
     }
 
@@ -81,7 +80,6 @@ class U2f {
      */
     public function getAuthenticateData(User $user)
     {
-
         return $this->u2f->getAuthenticateData(U2fKey::where('user_id', $user->id)->get()->all());
     }
 
@@ -96,7 +94,6 @@ class U2f {
      */
     public function doAuthenticate(User $user, $authData, $keyData)
     {
-
         $reg = $this->u2f->doAuthenticate(
             $authData,
             U2fKey::where('user_id', $user->id)->get()->all(),
@@ -104,8 +101,8 @@ class U2f {
         );
 
         $U2fKey = U2fKey::where([
-            'user_id' => $user->id,
-            'publicKey' => $reg->publicKey
+            'user_id'   => $user->id,
+            'publicKey' => $reg->publicKey,
         ])->first();
 
         if (is_null($U2fKey)) {
@@ -114,7 +111,7 @@ class U2f {
 
         $U2fKey->counter = $reg->counter;
         $U2fKey->save();
-        
+
         $this->session->set($this->config->get('u2f.sessionU2fName'), true);
 
         return $U2fKey;
@@ -122,7 +119,6 @@ class U2f {
 
     /**
      * @author LAHAXE Arnaud
-     *
      *
      * @return mixed
      */

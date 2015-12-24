@@ -1,31 +1,33 @@
-<?php namespace Certly\U2f\Models;
+<?php
+
+namespace Certly\U2f\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class OtpKey
+ * Class OtpKey.
  *
  * @author  LAHAXE Arnaud
- * @package Certly\U2f\Models
  */
 class U2fKey extends Model
 {
-    public $table = "u2f_key";
+    public $table = 'u2f_key';
 
-    public $primaryKey = "id";
+    public $primaryKey = 'id';
 
-    public $timestamps = TRUE;
+    public $timestamps = true;
 
     public $fillable = [
-        "user_id",
-        "keyHandle",
-        "publicKey",
-        "certificate",
-        "counter"
+        'user_id',
+        'keyHandle',
+        'publicKey',
+        'certificate',
+        'counter',
     ];
 
     /**
      * @author LAHAXE Arnaud <lahaxe.arnaud@gmail.com>
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

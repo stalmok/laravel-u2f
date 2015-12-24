@@ -1,18 +1,19 @@
-<?php namespace Certly\U2f\Http\Controllers;
+<?php
 
-use Auth;
-use Input;
-use Event;
-use Session;
-use Redirect;
-use Exception;
-use Certly\U2f\U2f as LaravelU2f;
+namespace Certly\U2f\Http\Controllers;
+
 use App\Http\Controllers\Controller;
+use Auth;
+use Certly\U2f\U2f as LaravelU2f;
+use Event;
+use Exception;
 use Illuminate\Config\Repository as Config;
+use Input;
+use Redirect;
+use Session;
 
 class U2fController extends Controller
 {
-
     /**
      * @var LaravelU2f
      */
@@ -25,7 +26,7 @@ class U2fController extends Controller
 
     /**
      * @param LaravelU2f $u2f
-     * @param Config $config
+     * @param Config     $config
      */
     public function __construct(LaravelU2f $u2f, Config $config)
     {
@@ -36,25 +37,22 @@ class U2fController extends Controller
     /**
      * @author LAHAXE Arnaud
      *
-     *
      * @return mixed
      */
     public function registerData()
     {
         list($req, $sigs) = $this->u2f->getRegisterData(Auth::user());
-        Event::fire('u2f.register.data', [ 'user' => Auth::user() ]);
+        Event::fire('u2f.register.data', ['user' => Auth::user()]);
 
         Session::set('u2f.registerData', $req);
 
         return view($this->config->get('u2f.register.view'))
             ->with('currentKeys', $sigs)
             ->with('registerData', $req);
-
     }
 
     /**
      * @author LAHAXE Arnaud
-     *
      *
      * @return mixed
      */
@@ -62,12 +60,13 @@ class U2fController extends Controller
     {
         try {
             $key = $this->u2f->doRegister(Auth::user(), Session::get('u2f.registerData'), json_decode(Input::get('register')));
-            Event::fire('u2f.register', [ 'u2fKey' => $key, 'user' => Auth::user() ]);
+            Event::fire('u2f.register', ['u2fKey' => $key, 'user' => Auth::user()]);
             Session::forget('u2f.registerData');
 
             if ($this->config->get('u2f.register.postSuccessRedirectRoute')) {
                 return Redirect::route($this->config->get('u2f.register.postSuccessRedirectRoute'));
             }
+
             return redirect('/');
         } catch (Exception $e) {
             return Redirect::route('u2f.register.data');
@@ -76,7 +75,6 @@ class U2fController extends Controller
 
     /**
      * @author LAHAXE Arnaud
-     *
      *
      * @return mixed
      */
@@ -87,7 +85,7 @@ class U2fController extends Controller
         }
 
         $req = $this->u2f->getAuthenticateData(Auth::user());
-        Event::fire('u2f.authentication.data', [ 'user' => Auth::user() ]);
+        Event::fire('u2f.authentication.data', ['user' => Auth::user()]);
 
         Session::set('u2f.authenticationData', $req);
 
@@ -98,18 +96,16 @@ class U2fController extends Controller
     /**
      * @author LAHAXE Arnaud
      *
-     *
      * @return mixed
      */
     public function auth()
     {
         try {
             $key = $this->u2f->doAuthenticate(Auth::user(), Session::get('u2f.authenticationData'), json_decode(Input::get('authentication')));
-            Event::fire('u2f.authentication', [ 'u2fKey' => $key, 'user' => Auth::user() ]);
+            Event::fire('u2f.authentication', ['u2fKey' => $key, 'user' => Auth::user()]);
             Session::forget('u2f.authenticationData');
 
             return $this->redirectAfterSuccessAuth();
-
         } catch (Exception $e) {
             Session::flash('error', $e->getMessage());
 
