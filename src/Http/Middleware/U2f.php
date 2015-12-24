@@ -1,23 +1,23 @@
-<?php namespace Certly\U2f\Http\Middleware;
+<?php
+
+namespace Certly\U2f\Http\Middleware;
 
 use Auth;
-use Closure;
 use Certly\U2f\Models\U2fKey;
 use Certly\U2f\U2f as LaravelU2f;
+use Closure;
 use Illuminate\Config\Repository as Config;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Class U2f
+ * Class U2f.
  *
  *
  *
- * @package Certly\U2f\Http\Middleware
  * @author  LAHAXE Arnaud
  */
 class U2f
 {
-
     /**
      * @var LaravelU2f
      */
@@ -37,26 +37,28 @@ class U2f
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
      *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if (! $this->config->get('u2f.enable')) {
+        if (!$this->config->get('u2f.enable')) {
             return $next($request);
         }
 
-        if (! $this->u2f->check()) {
+        if (!$this->u2f->check()) {
             if (Auth::guest()) {
                 throw new HttpException(401, 'You need to log in before an u2f authentication');
             }
             if (U2fKey::where('user_id', '=', Auth::user()->id)->count() === 0 && $this->config->get('u2f.byPassUserWithoutKey')) {
                 return $next($request);
             }
+
             return redirect()->guest('u2f/auth');
         }
+
         return $next($request);
     }
 }

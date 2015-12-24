@@ -1,13 +1,18 @@
-<?php namespace Certly\U2f;
+<?php
+
+namespace Certly\U2f;
 
 use Illuminate\Support\Facades\Facade;
 
-class U2fFacade extends Facade {
-
+class U2fFacade extends Facade
+{
     /**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'u2f'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'u2f';
+    }
 }
