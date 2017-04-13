@@ -2,7 +2,7 @@
 
 namespace Certly\U2f\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use Auth;
 use Certly\U2f\U2f as LaravelU2f;
 use Event;
@@ -11,6 +11,7 @@ use Illuminate\Config\Repository as Config;
 use Input;
 use Redirect;
 use Session;
+use Request;
 
 class U2fController extends Controller
 {
@@ -59,7 +60,12 @@ class U2fController extends Controller
     public function register()
     {
         try {
-            $key = $this->u2f->doRegister(Auth::user(), Session::get('u2f.registerData'), json_decode(Input::get('register')));
+            $key = $this->u2f->doRegister(
+                Auth::user(),
+                Session::get('u2f.registerData'),
+                json_decode(Request::get('register'))
+            );
+
             Event::fire('u2f.register', ['u2fKey' => $key, 'user' => Auth::user()]);
             Session::forget('u2f.registerData');
 
